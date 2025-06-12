@@ -18,7 +18,7 @@
     --ff-refault: "Rubik", Georgia; /* Assuming Refault is a custom font you'll link */
     --ff-oswald: 'Oswald', sans-serif;
     --ff-poppins: 'Poppins', sans-serif;
-    --ff-sonsie: 'Rubik Puddles', sans-serif;
+    --ff-sonsie: 'Rubik Puddles', sans-serif; /* Adjusted font for Sonsie One, Rubik Puddles */
 
     --fs-1: 54px; /* Base for Hero Title */
     --fs-2: 34px; /* Base for H2 */
@@ -62,7 +62,7 @@ button { font: inherit; background: none; border: none; cursor: pointer; }
 input { font: inherit; width: 100%; border: none; }
 html { font-family: var(--ff-poppins); scroll-behavior: smooth; }
 body { 
-    overflow-x: hidden; 
+    overflow-x: hidden; /* Ensures no horizontal scrollbar on the body */
     background-color: var(--eerie-black); /* A darker base for overall dark mode */
     color: var(--white);
     transition: background-color var(--transition-3);
@@ -268,7 +268,7 @@ body.active { overflow-y: hidden; } /* For mobile nav open */
     font-size: var(--fs-7); /* Base size */
     font-weight: var(--fw-500);
     text-transform: uppercase;
-    letter-spacing: 12px;
+    letter-spacing: 5px; /* Adjusted from 12px to reduce overflow on smaller screens */
     text-shadow: 0 7px hsla(0, 0%, 0%, 0.4);
     margin-bottom: 15px;
     opacity: 0;
@@ -290,6 +290,9 @@ body.active { overflow-y: hidden; } /* For mobile nav open */
 @media (max-width: 420px) {
     :root {
         --fs-1: 55px;
+    }
+    .hero-subtitle {
+        letter-spacing: 2px; /* Even smaller for very small screens */
     }
 }
 .hero p {
@@ -333,6 +336,7 @@ body.active { overflow-y: hidden; } /* For mobile nav open */
     background-position: center; 
     padding: 120px 0 var(--section-padding); 
     margin-bottom: 130px;
+    overflow-x: hidden; /* Added to contain horizontal animations within this section */
 }
 .about .container {
     display: grid;
@@ -356,18 +360,7 @@ body.active { overflow-y: hidden; } /* For mobile nav open */
 }
 
 .about-content {
-  border-radius: 40px
-  box-shadow: 60px 140px 30px var(--main-color);
-  background-color: #f8f8f8;
-  padding: 2.5rem;
-  text-align: center;
-  max-width: 600px;
-  margin: 3rem auto;
-  transition: all 0.5s ease-in-out;
-}
-
-.character { display: none; } /* Managed by media queries */
-.about-content { 
+    /* Removed redundant/conflicting styles: border-radius, box-shadow, background-color, padding, text-align, max-width, margin */
     background: var(--raisin-black-1); 
     color: var(--white); 
     padding: 40px 20px; 
@@ -377,6 +370,9 @@ body.active { overflow-y: hidden; } /* For mobile nav open */
     transform: translateX(50px);
     transition: opacity 1s var(--cubic-bezier-ease-out), transform 1s var(--cubic-bezier-ease-out);
 }
+
+.character { display: none; } /* Managed by media queries */
+
 .about-content.active {
     opacity: 1;
     transform: translateX(0);
@@ -517,10 +513,10 @@ body.active { overflow-y: hidden; } /* For mobile nav open */
     transform: translateY(-3px);
 }
 .card-banner h1 {
-  font-size: 90px;
-  color: transparent;
-  -webkit-text-stroke: 2px var(--main-color);
-  text-shadow: 2px var(--main-color);
+    font-size: 90px;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--main-color);
+    text-shadow: 2px var(--main-color);
 }
 
 /*-----------------------------------*\
@@ -787,6 +783,10 @@ footer {
 
     .container { max-width: 540px; margin-inline: auto; }
 
+    .hero-subtitle {
+        letter-spacing: 12px; /* Restore for larger mobile/tablet */
+    }
+
     .about-banner { position: relative; max-width: 410px; margin-inline: auto; z-index: 1; }
     .character-2 { display: block; position: absolute; top: 120px; left: 160px; max-width: 150px; z-index: -1; }
     .about-content { padding: 60px 40px; }
@@ -829,8 +829,6 @@ footer {
     .character-2 { left: 200px; }
     .character-3 { top: 0; right: -112px; }
     .about-content { padding: 40px; }
-
-
 
     .gallery-list { padding-bottom: 30px; }
     .gallery-list li { min-width: 70%; }
